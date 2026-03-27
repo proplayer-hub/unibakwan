@@ -1,90 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Prabowo & Cat 🐱</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to top, #a8edea, #fed6e3);
-      font-family: "Comic Sans MS", cursive;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<title>Prabowo & Cat ✨</title>
 
-    .scene {
-      text-align: center;
-    }
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    font-family: "Comic Sans MS", cursive;
+    background: linear-gradient(to top, #89f7fe, #66a6ff);
+  }
 
-    h1 {
-      color: #333;
-      margin-bottom: 20px;
-    }
+  /* Floating background bubbles */
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    animation: rise 10s infinite ease-in;
+  }
 
-    .character {
-      font-size: 80px;
-      animation: bounce 1s infinite alternate;
+  @keyframes rise {
+    to {
+      transform: translateY(-110vh);
+      opacity: 0;
     }
+  }
 
-    .cat {
-      font-size: 70px;
-      position: relative;
-      animation: slide 2s infinite alternate ease-in-out;
-    }
+  .container {
+    text-align: center;
+    position: relative;
+    top: 30%;
+  }
 
-    .heart {
-      font-size: 30px;
-      animation: float 2s infinite;
-    }
+  h1 {
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+  }
 
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to { transform: translateY(-20px); }
-    }
+  .prabowo {
+    font-size: 90px;
+    animation: floaty 2s infinite ease-in-out;
+    cursor: pointer;
+  }
 
-    @keyframes slide {
-      from { left: -20px; }
-      to { left: 20px; }
-    }
+  .cat {
+    font-size: 80px;
+    margin-top: 10px;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
 
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-50px); opacity: 0; }
+  .cat:hover {
+    transform: scale(1.2) rotate(10deg);
+  }
+
+  @keyframes floaty {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+  }
+
+  .message {
+    margin-top: 20px;
+    color: white;
+    font-size: 18px;
+    opacity: 0.9;
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 3s linear forwards;
+  }
+
+  @keyframes floatUp {
+    to {
+      transform: translateY(-200px);
+      opacity: 0;
     }
-  </style>
+  }
+</style>
 </head>
+
 <body>
-  <div class="scene">
-    <h1>Prabowo Playing with His Cat 🐾</h1>
 
-    <div class="character">🧑‍✈️</div>
-    <div class="cat">🐱</div>
-    <div class="heart">💖</div>
+<div class="container">
+  <h1>✨ Cute Moment ✨</h1>
 
-    <p>So cutee 😆✨</p>
-  </div>
+  <div class="prabowo" onclick="spawnHearts()">🧑‍✈️</div>
+  <div class="cat" onclick="meow()">🐱</div>
 
-  <script>
-    // Create floating hearts randomly
-    setInterval(() => {
+  <div class="message">Click them! 😆</div>
+</div>
+
+<script>
+  // Floating bubbles background
+  for (let i = 0; i < 25; i++) {
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.style.left = Math.random() * 100 + "vw";
+    bubble.style.animationDuration = (5 + Math.random() * 5) + "s";
+    bubble.style.width = bubble.style.height = (10 + Math.random() * 20) + "px";
+    document.body.appendChild(bubble);
+  }
+
+  // Heart effect when clicking
+  function spawnHearts() {
+    for (let i = 0; i < 6; i++) {
       const heart = document.createElement("div");
+      heart.className = "heart";
       heart.innerHTML = "💖";
-      heart.style.position = "absolute";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.bottom = "0px";
-      heart.style.fontSize = "24px";
-      heart.style.animation = "float 2s linear";
-
+      heart.style.left = (window.innerWidth/2 + (Math.random()*100 - 50)) + "px";
+      heart.style.top = (window.innerHeight/2) + "px";
       document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 2000);
-    }, 500);
-  </script>
+      setTimeout(() => heart.remove(), 3000);
+    }
+  }
+
+  // Cat interaction
+  function meow() {
+    alert("Meow! 🐱💖");
+  }
+</script>
+
 </body>
 </html>
