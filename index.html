@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prabowo & Cat 🐱</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #a8edea, #fed6e3);
+      font-family: "Comic Sans MS", cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .scene {
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .character {
+      font-size: 80px;
+      animation: bounce 1s infinite alternate;
+    }
+
+    .cat {
+      font-size: 70px;
+      position: relative;
+      animation: slide 2s infinite alternate ease-in-out;
+    }
+
+    .heart {
+      font-size: 30px;
+      animation: float 2s infinite;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
+    }
+
+    @keyframes slide {
+      from { left: -20px; }
+      to { left: 20px; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-50px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <h1>Prabowo Playing with His Cat 🐾</h1>
+
+    <div class="character">🧑‍✈️</div>
+    <div class="cat">🐱</div>
+    <div class="heart">💖</div>
+
+    <p>So cutee 😆✨</p>
+  </div>
+
+  <script>
+    // Create floating hearts randomly
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.innerHTML = "💖";
+      heart.style.position = "absolute";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.bottom = "0px";
+      heart.style.fontSize = "24px";
+      heart.style.animation = "float 2s linear";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 2000);
+    }, 500);
+  </script>
+</body>
+</html>
